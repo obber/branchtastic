@@ -26,21 +26,15 @@ searchTeam(org, team)
     return createBranches(members, org, repo);
   })
   .then(() => {
-    console.log('\ncreated branches!');
-  })
-  .catch(() => {
-    console.error('\nfailed to create all/some branches.');
-  })
-  .then(() => {
     console.log('\ndeleting the spectator webhook...');
     return deleteHook(org, repo, 'spectator');
   })
   .then(() => {
-    console.log('\ndeleted webhooks with the keyword "spectator"');
+    console.log('\ndeleted or did not find any webhooks with the keyword "spectator"'.green);
     spinner.stop();
   })
   .catch(() => {
-    console.error('\nfailed to delete any/all webhooks.');
+    console.error('\nfailed to delete webhooks.'.red);
     spinner.stop();
   })
   .then(() => {
