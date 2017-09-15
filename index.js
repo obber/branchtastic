@@ -4,6 +4,7 @@ const Spinner = require('cli-spinner').Spinner;
 const searchTeam = require('./lib/searchTeam');
 const getMembers = require('./lib/getMembers');
 const createBranches = require('./lib/createBranches');
+const deleteHook = require('./lib/deleteHook');
 
 console.log('Let\'s create some branches. \n');
 
@@ -26,9 +27,22 @@ searchTeam(org, team)
   })
   .then(() => {
     console.log('\ncreated branches!');
+  })
+  .catch(() => {
+    console.error('\nfailed to create all/some branches.');
+  })
+  .then(() => {
+    console.log('\ndeleting the spectator webhook...');
+    return deleteHook(org, repo, 'spectator');
+  })
+  .then(() => {
+    console.log('\ndeleted webhooks with the keyword "spectator"');
     spinner.stop();
   })
   .catch(() => {
-    console.error('\nfailed to create branches.');
+    console.error('\nfailed to delete any/all webhooks.');
     spinner.stop();
+  })
+  .then(() => {
+    process.exit();
   })
