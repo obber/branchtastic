@@ -1,13 +1,13 @@
-#Branchtastic
+# Branchtastic
 
-##Setup
+## Setup
 
-###Install Dependencies
+### Install Dependencies
 ```bash
 yarn || npm install
 ```
 
-###Acquire Github Token
+### Acquire Github Token
 
 1. Log in to github
 2. Click on settings
@@ -16,7 +16,7 @@ yarn || npm install
 	* Enable repo && admin::org
 5. Copy token
 
-###Set Up Environment Variable
+### Set Up Environment Variable
 From the root directory, run the following command.
 
 ```bash
@@ -34,7 +34,7 @@ module.exports = {
 }
 ```
 
-###Create Branches
+### Create Branches
 From the root directory, run the following command.
 
 ```bash
